@@ -50,7 +50,7 @@ public:
 
     friend ostream& operator << (ostream &out, const MyStack & stack) {
         for(int i = 1; i <= stack._top; i++) {
-            stack._data[i].Zoo::Print();
+            stack._data[i].t::Print();
         }
         return out;
     }

@@ -9,6 +9,7 @@
 #define Zoo_h
 
 #include <string>
+#include <iostream>
 
 using std::string;
 using std::ofstream;
@@ -75,6 +76,11 @@ public:
     //функция, считающая, сколько животных можно обойти за время работы
     //зоопарка, если тратить на каждого n минут
     int How_much(int n);
+
+    friend std::ostream& operator << (std::ostream &out, const Zoo & zoo) {
+        out << "name: " << zoo.name << "country: " << zoo.country << std::endl;
+        return out;
+    }
 };
 
 

@@ -44,7 +44,7 @@ int main() {
     cout << std::boolalpha << new_stack.isEmpty();
     */
 
-    MyDeck<int> deque;
+    MyDeck<int> deque(10);
     deque.push_back(3);
     deque.push_back(4);
     deque.push_back(5);
@@ -79,7 +79,7 @@ int main() {
 //->5
     cout << "__________________________" << endl;
 
-    MyDeck<int> d;
+    MyDeck<int> d(10); 
     d.push_front(1);
     d.push_front(2);
     d.push_front(3);
@@ -91,6 +91,22 @@ int main() {
     cout << d.pop_back() << endl;
     cout << d.pop_back() << endl;
     d.push_front(1);
-    return 0;
+    
+    cout << std::boolalpha << (d==deque) << endl;
+
+    MyDeck<int> c(1);
+    c.push_back(1);
+    cout << c.size() << " ";
+    c.push_front(2);
+    cout << c.size() << " ";
+    c.push_back(2);
+
+    cout << "___________________" << endl;
+
+    deque.Print();
+
+    cout << deque;
+    cout << d;
+     
     return 0;
 }

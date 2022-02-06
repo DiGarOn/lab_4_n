@@ -8,15 +8,20 @@ using std::endl;
 using std::ostream;
 
 template<typename t>
-class MyDeck {
+class MyDeck : public Zoo{
     t *_data;
     int _size;
     int _top;
+    int max_size;
 public:
 
     int size() { return _size; }
 
     void push_back(t item) {
+        if(_size + 1 > max_size) {
+            cout << "deck if full" << endl;
+            return;
+        }
         t *new_data = new t[_size + 1];
         for(int i = 0; i < _size; i++) {
             new_data[i] = _data[i];
@@ -36,6 +41,10 @@ public:
     }
 
     void push_front(t item) {
+        if(_size + 1 > max_size) {
+            cout << "deck if full" << endl;
+            return;
+        }
         //cout << "push_front: " << endl;
         t *new_data = new t[_size + 1];
         //cout << item << " ";
@@ -90,12 +99,14 @@ public:
         return val;
     }
 
-    MyDeck() {
+    MyDeck(int new_max_size) {
+        max_size = new_max_size;
         _size = 0;
         _data = new t[0];
         
     }
     MyDeck(const MyDeck &new_deck) {
+        max_size = new_deck.max_size;
         _data = new t[new_deck._size];
         assert(_data != nullptr);
         _size = new_deck._size;
@@ -128,6 +139,26 @@ public:
         return *this;
     }
 
+    friend bool operator == (const MyDeck &first, const MyDeck &second) {
+        if(first._size == second._size && first._top == second._top) return 1;
+            
+        return 0;
+    }
+
+    void Print() {
+        for(int i = 0; i < _size; i++) {
+            cout << _data[i] << " ";
+        }
+        cout << endl;
+    }
+
+    friend std::ostream & operator << (std::ostream & out, MyDeck & deck) {
+        deck.Print();
+    }
+    
+
 };
+
+
 
 #endif 
