@@ -107,6 +107,6 @@ int main() {
 
     cout << deque;
     cout << d;
-     
+      
     return 0;
 }

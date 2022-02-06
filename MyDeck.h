@@ -154,6 +154,7 @@ public:
 
     friend std::ostream & operator << (std::ostream & out, MyDeck & deck) {
         deck.Print();
+        return out;
     }
     
 
