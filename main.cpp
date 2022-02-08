@@ -1,11 +1,11 @@
 #include <iostream>
-#include "MyDeck.h"
-//#include "MyDeck_n.h"
+//#include "MyDeck.h"
+#include "MyDeck_n.h"
 using std::cout;
 
 struct A {
     int data = 1;
-    void Print() {
+    void Print() const {
         cout << data;
     }
 }b;
@@ -144,13 +144,13 @@ int main() {
     
 
 
-    /*
-    тут код работать не будет, выдаст ошибку
+    
+    //тут код работать не будет, выдаст ошибку
     cout << "----------------->A: " << endl;
     MyDeck<A> a_deck(10);
     a_deck.push_back(b);
     cout << a_deck;
-    */
+    
 
     return 0;
 }
