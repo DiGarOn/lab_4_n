@@ -144,54 +144,22 @@ public:
             
         return 0;
     }
-/*
-    struct Print_detector
-    {
-        static auto check(void*) -> void; // раз уж С++11, напишем в постфиксной форме - так красивее и однообразнее :)
-        template<typename T>
-        static auto check(T* p) -> decltype(p->Print())*; // указатель на чего бы то ни было отличается от не-указателя
-
-        typedef void* match_type; // но мы ожидаем конкретно void Print(), поэтому проверяем на void*
-    };
-
-    // менее громоздкий способ писать метафункции - это наследоваться от готовых
-    template<typename T> struct has_Print : std::is_same<Print_detector::match_type, decltype(Print_detector::check((T*)nullptr))> {};
-*/
-
-    template<typename T> struct has_Print{
-    private:  // Спрячем от пользователя детали реализации.
-        static int detect(...);  // Статическую функцию и вызывать проще.
-        template<typename U> static decltype(std::declval<U>().Print()) detect(const U&);
-    public:
-        static constexpr bool value = std::is_same<void, decltype(detect(std::declval<T>()))>::value;  // Вот видите, готово.
-    };
-
-/*
-    template <typename T> 
-    auto Print(const T&q)->decltype( std::declval<std::ostream&> <<q,str() ){
-        stringstream ss; 
-        ss<<q; 
-        return q. str();
+    template <typename Y>
+    auto Print_value(const Y&q)->decltype(q.Print(),0){
+        q.Print();
+        return 0;
     }
-    template <typename T> 
-    auto Print(const T&q)->decltype( q. Print() ){
-        return q. Print();
+
+    template <typename Y>
+    auto Print_value(const Y&q)->decltype((    *(std::ostream*)(0)     <<q,0)){
+        cout<<q << " ";
+        return 0;
     }
-*/
 
     void Print() {
-        if(_size == 0) return;
-        if(typeid(_data[0]) == typeid(int) || typeid(t) == typeid(float) || typeid(t) == typeid(char) || typeid(t) == typeid(double) || typeid(t) == typeid(wchar_t) || typeid(t) == typeid(bool)) {
-            for(int i = 0; i < _size; i++) {
-                cout << _data[i] << " ";
-            } 
-        } /*else if(has_Print<t>::value == true) {
-            for(int i = 0; i < _size; i++) {
-                _data[i].Print();
-            }    
-        } */else {
-            cout << "u can't print it...";
-        }
+        for(int i = 0; i < _size; i++) {
+            Print_value( _data[i]);
+        } 
         cout << endl;
     }
 

@@ -1,6 +1,6 @@
 #include <iostream>
-#include "MyDeck.h"
-
+//#include "MyDeck.h"
+#include "MyDeck_n.h"
 using std::cout;
 
 int main() {
@@ -104,9 +104,13 @@ int main() {
     cout << "___________________" << endl;
 
     deque.Print();
-
+    cout << endl << "here" << endl; 
     cout << deque;
     cout << d;
       
+    cout << endl << endl << "-------------->Zoo: " << endl;
+    Zoo a;
+    cout << a;
+
     return 0;
 }
