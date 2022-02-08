@@ -157,7 +157,7 @@ public:
     // менее громоздкий способ писать метафункции - это наследоваться от готовых
     template<typename T> struct has_Print : std::is_same<Print_detector::match_type, decltype(Print_detector::check((T*)nullptr))> {};
 */
-
+/*
     template<typename T> struct has_Print{
     private:  // Спрячем от пользователя детали реализации.
         static int detect(...);  // Статическую функцию и вызывать проще.
@@ -165,7 +165,7 @@ public:
     public:
         static constexpr bool value = std::is_same<void, decltype(detect(std::declval<T>()))>::value;  // Вот видите, готово.
     };
-
+*/
 /*
     template <typename T> 
     auto Print(const T&q)->decltype( std::declval<std::ostream&> <<q,str() ){
@@ -182,7 +182,14 @@ public:
     //а тут мы надеемся, что пользователь не дурак и реализовал перегрузку оператора вывода в своем классе)
     //в противном случае вылезет ошибка    
     friend std::ostream & operator << (std::ostream & out, MyDeck & deck) {
-        for(int i = 0; i < deck._size; i++) {
+        if(deck._size == 0) return out;
+        try {
+            if(!(out << deck._data[0])) {throw 134;}
+        } catch(int) {
+            cout << "u can't print it" << endl;
+            return out;
+        }
+        for(int i = 1; i < deck._size; i++) {
             out << deck._data[i] << endl;
         }
         return out;

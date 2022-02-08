@@ -157,8 +157,8 @@ public:
     */
     
     //рассмтривается случай существования метода Print 
-    template <typename Y>
-    auto Print_value(const Y&q)->decltype(q.Print(),0){
+    template <typename Y, typename...U>
+    auto Print_value(const Y&q,const U&...a)->decltype(q.Print(),0){
         q.Print();
         return 0;
     }

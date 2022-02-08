@@ -81,6 +81,23 @@ public:
         out << "name: " << zoo.name << "country: " << zoo.country << std::endl;
         return out;
     }
+    Zoo&operator=(const Zoo& value) {
+        delete[] data;
+        delete[] time;
+        name = value.name;
+        country = value.country;
+        count = value.count;
+        data = new string[count];
+        for(int i = 0; i < count; i++) {
+            data[i] = value.data[i];
+        }
+        time = new int[4];
+        for(int i = 0; i < 4; i++) {
+            time[i] = value.time[i];
+        }
+        cost = value.cost;
+        return *this;
+    }
 };
 
 

@@ -3,6 +3,13 @@
 //#include "MyDeck_n.h"
 using std::cout;
 
+struct A {
+    int data = 1;
+    void Print() {
+        cout << data;
+    }
+}b;
+
 int main() {
     /*
     Zoo val;
@@ -110,7 +117,40 @@ int main() {
       
     cout << endl << endl << "-------------->Zoo: " << endl;
     Zoo a;
-    cout << a;
+    MyDeck<Zoo> zoo_deck(10);
+    zoo_deck.push_back(a);
+    
+    string new_name = "zoo"; 
+    string new_coutry = "rus";
+    string new_data[2];
+    string data_0, data_1;
+    data_0 = "11";
+    data_1 = "12";
+    new_data[0] = data_0;
+    new_data[1] = data_1;
+    int new_count = 2;
+    int new_time [4];
+    new_time[0] = 0;
+    new_time[1] = 1;
+    new_time[2] = 1;
+    new_time[3] = 2;  
+    int new_cost = 100;
+
+    Zoo zoo(new_name, new_coutry, new_data, new_count, new_time, new_cost);
+    zoo.Print();
+    zoo_deck.push_front(zoo);
+    
+    cout << zoo_deck;
+    
+
+
+    /*
+    тут код работать не будет, выдаст ошибку
+    cout << "----------------->A: " << endl;
+    MyDeck<A> a_deck(10);
+    a_deck.push_back(b);
+    cout << a_deck;
+    */
 
     return 0;
 }
