@@ -179,24 +179,12 @@ public:
     }
 */
 
-    void Print() {
-        if(_size == 0) return;
-        if(typeid(_data[0]) == typeid(int) || typeid(t) == typeid(float) || typeid(t) == typeid(char) || typeid(t) == typeid(double) || typeid(t) == typeid(wchar_t) || typeid(t) == typeid(bool)) {
-            for(int i = 0; i < _size; i++) {
-                cout << _data[i] << " ";
-            } 
-        } /*else if(has_Print<t>::value == true) {
-            for(int i = 0; i < _size; i++) {
-                _data[i].Print();
-            }    
-        } */else {
-            cout << "u can't print it...";
-        }
-        cout << endl;
-    }
-
+    //а тут мы надеемся, что пользователь не дурак и реализовал перегрузку оператора вывода в своем классе)
+    //в противном случае вылезет ошибка    
     friend std::ostream & operator << (std::ostream & out, MyDeck & deck) {
-        deck.Print();
+        for(int i = 0; i < deck._size; i++) {
+            out << deck._data[i] << endl;
+        }
         return out;
     }
     
